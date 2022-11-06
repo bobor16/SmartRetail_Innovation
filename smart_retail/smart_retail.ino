@@ -5,13 +5,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-int main() {
-  printf("PATH : %s\n", getenv("PATH"));
-  printf("HOME : %s\n", getenv("HOME"));
-  printf("ROOT : %s\n", getenv("ROOT"));
-  return(0);
-}
-
 //Provide the token generation process info.
 #include "addons/TokenHelper.h"
 
@@ -38,8 +31,17 @@ unsigned long sendDataPrevMillis = 0;
 int count = 0;
 bool signupOK = false;
 
+// Ultrasonic distance sensor
+const int trigPin = 5;
+const int echoPin = 18;
+
+// Sound of speen in cm/uS
+#define SOUND_SPEED 0.034
+long duration;
+float distanceCM;
+
 void setup() {
-  // put your setup code here, to run once:
+  // put your setup code here, to run once: 
   Serial.begin(115200);
   WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
   Serial.print("Connecting to WiFi");
@@ -73,13 +75,37 @@ void setup() {
   Firebase.begin(&config, &auth);
   Firebase.reconnectWiFi(true);
 
+  pinMode(trigPin, OUTPUT);
+  pinMode(echoPin, INPUT);
+
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
+
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(2);
+
+  //Sets the trigPin on HIGH state for 10 micro seconds
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+
+  //Reads the echoPin, returns the sound wave travel time in microseconds
+  duration = pulseIn(echoPin, HIGH);
+
+  //Calculate the distance
+  distanceCM = duration * SOUND_SPEED / 2;
+  
   if (Firebase.ready() && signupOK && (millis() - sendDataPrevMillis > 15000 || sendDataPrevMillis == 0)) {
     sendDataPrevMillis = millis();
 
+    // Write the distance on the database path test/distance
+    if (Firebase.RTDB.setInt(&fbdo, "test/distance", distanceCM)) {
+      Serial.println("PASSED");
+      Serial.println("PATH: " + fbdo.dataPath());
+      Serial.println("TYPE: " + fbdo.dataType());
+    }
     // Write an Int number on the database path test/int
     if (Firebase.RTDB.setInt(&fbdo, "test/int", count)) {
       Serial.println("PASSED");
