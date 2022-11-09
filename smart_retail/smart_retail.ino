@@ -41,7 +41,7 @@ long duration;
 float distanceCM;
 
 void setup() {
-  // put your setup code here, to run once: 
+  // put your setup code here, to run once:
   Serial.begin(115200);
   WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
   Serial.print("Connecting to WiFi");
@@ -77,12 +77,10 @@ void setup() {
 
   pinMode(trigPin, OUTPUT);
   pinMode(echoPin, INPUT);
-
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
-
   digitalWrite(trigPin, LOW);
   delayMicroseconds(2);
 
@@ -96,37 +94,19 @@ void loop() {
 
   //Calculate the distance
   distanceCM = duration * SOUND_SPEED / 2;
-  
+
   if (Firebase.ready() && signupOK && (millis() - sendDataPrevMillis > 15000 || sendDataPrevMillis == 0)) {
     sendDataPrevMillis = millis();
 
     // Write the distance on the database path test/distance
-    if (Firebase.RTDB.setInt(&fbdo, "test/distance", distanceCM)) {
+    if (Firebase.RTDB.setInt(&fbdo, "Ultrasonic/distance", distanceCM)) {
       Serial.println("PASSED");
       Serial.println("PATH: " + fbdo.dataPath());
       Serial.println("TYPE: " + fbdo.dataType());
     }
-    // Write an Int number on the database path test/int
-    if (Firebase.RTDB.setInt(&fbdo, "test/int", count)) {
-      Serial.println("PASSED");
-      Serial.println("PATH: " + fbdo.dataPath());
-      Serial.println("TYPE: " + fbdo.dataType());
-    }
-    else {
-      Serial.println("FAILED");
-      Serial.println("REASON: " + fbdo.errorReason());
-    }
-    count++;
-
-    // write an float number on the database path test/float
-    if (Firebase.RTDB.setFloat(&fbdo, "test/float", 0.01 + random(0, 100))) {
-      Serial.println("PASSED");
-      Serial.println("PATH: " + fbdo.dataPath());
-      Serial.println("TYPE: " + fbdo.dataType());
-    }
-    else {
-      Serial.println("FAILED");
-      Serial.println("REASON: " + fbdo.errorReason());
-    }
+  }
+  else {
+    Serial.println("FAILED");
+    Serial.println("REASON: " + fbdo.errorReason());
   }
 }
