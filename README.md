@@ -11,11 +11,11 @@ To connect to firebase add the following to an config.h file
 #define api_key_fb "your-private-api-key"
 ```
 
-To run the frontend, open a terminal and run
+Open a terminal and run
 ```
 npm install
 ```
-If the install is successful, run
+If the install is successful, open `localhost:3000` in development mode
 ```
 npm start
 ```
