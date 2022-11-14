@@ -2,7 +2,7 @@
 
 ### Smart Retail
 
-To connect to firebase create a config.h in the smart_retail directory and add the following
+To connect to firebase create a config.h in the /smart_retail directory and add the following
 ```
 #define myWifiSSID "your-wifi-ssid"
 #define myWifiPwD "your-wifi-pwd"
@@ -10,7 +10,7 @@ To connect to firebase create a config.h in the smart_retail directory and add t
 #define api_key_fb "your-private-api-key"
 ```
 
-To run the frontend, create a new .env in the frontend directory add the following configuration
+To run the frontend, create a new .env in the /frontend directory add the following configuration
 ```
 REACT_APP_APIKEY="your_app_apikey"
 REACT_APP_DOMAIN="your_domain"
