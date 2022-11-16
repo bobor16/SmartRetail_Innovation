@@ -1,12 +1,12 @@
 import React from 'react';
-import { RealtimeData } from '../realtimeData/index';
+import { ProductsTable } from '../realtimeData/ProductsTable';
 
 function Employee() {
   return (
     <>
-      <h1>Employee</h1>
+      <h1 class='text-center pt-5 pb-5'>Products</h1>
 
-      <RealtimeData />
+      <ProductsTable />
     </>
   );
 }
