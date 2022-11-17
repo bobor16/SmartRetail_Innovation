@@ -8,7 +8,7 @@ function usePageViews() {
   return location.pathname;
 }
 
-function SoldoutButton() {
+function Column4Button() {
   return (
     <>
       {usePageViews() === '/employee' && (
@@ -29,4 +29,4 @@ function SoldoutButton() {
   );
 }
 
-export default SoldoutButton;
+export default Column4Button;

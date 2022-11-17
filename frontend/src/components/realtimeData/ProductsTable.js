@@ -3,7 +3,7 @@ import StartFirebase from '../lib/lib-firebase';
 import { ref, onValue } from 'firebase/database';
 import { Table } from 'react-bootstrap';
 import './ProductsTable.css';
-import SoldoutButton from '../SoldoutButton';
+import Column4Button from '../Column4Button';
 import { Routes, Route } from 'react-router-dom';
 
 const db = StartFirebase();
@@ -47,35 +47,37 @@ export class ProductsTable extends React.Component {
 
   render() {
     return (
-      <Table
-        striped
-        bordered
-        hover
-        responsive
-        size='sm'
-        className='content-table'
-      >
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Product</th>
-            <th>Amount</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          {this.state.tableData.map((row, index) => {
-            return (
-              <tr key={index}>
-                <td>{index + 1}</td>
-                <td>{row.key}</td>
-                <td>{row.data}</td>
-                <SoldoutButton></SoldoutButton>
-              </tr>
-            );
-          })}
-        </tbody>
-      </Table>
+      <>
+        <Table
+          striped
+          bordered
+          hover
+          responsive
+          size='sm'
+          className='content-table'
+        >
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Product</th>
+              <th>Amount</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {this.state.tableData.map((row, index) => {
+              return (
+                <tr key={index}>
+                  <td>{index + 1}</td>
+                  <td>{row.key}</td>
+                  <td>{row.data}</td>
+                  <Column4Button></Column4Button>
+                </tr>
+              );
+            })}
+          </tbody>
+        </Table>
+      </>
     );
   }
 }
