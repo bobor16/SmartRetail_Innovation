@@ -6,9 +6,9 @@ import { Link } from 'react-router-dom';
 function Login() {
   return (
     <>
-      <div class='wrapper fadeInDown'>
+      <div class='wrapper '>
         <div id='formContent'>
-          <div class='fadeIn first'>
+          <div class=''>
             <h3 class='pt-3 pb-3'>Sign in</h3>
           </div>
           <form>
