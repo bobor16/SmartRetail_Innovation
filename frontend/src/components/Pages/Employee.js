@@ -1,6 +1,5 @@
 import React from 'react';
 import { ProductsTable } from '../realtimeData/ProductsTable';
-
 function Employee() {
   return (
     <>

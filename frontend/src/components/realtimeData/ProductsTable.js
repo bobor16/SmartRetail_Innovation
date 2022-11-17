@@ -3,6 +3,9 @@ import StartFirebase from '../lib/lib-firebase';
 import { ref, onValue } from 'firebase/database';
 import { Table } from 'react-bootstrap';
 import './ProductsTable.css';
+import SoldoutButton from '../SoldoutButton';
+import { Routes, Route } from 'react-router-dom';
+
 const db = StartFirebase();
 
 export class ProductsTable extends React.Component {
@@ -57,6 +60,7 @@ export class ProductsTable extends React.Component {
             <th>#</th>
             <th>Product</th>
             <th>Amount</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -66,6 +70,7 @@ export class ProductsTable extends React.Component {
                 <td>{index + 1}</td>
                 <td>{row.key}</td>
                 <td>{row.data}</td>
+                <SoldoutButton></SoldoutButton>
               </tr>
             );
           })}
