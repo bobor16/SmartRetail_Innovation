@@ -1,23 +1,37 @@
 import React from 'react';
 import { TbInboxOff } from 'react-icons/tb';
-import { BrowserRouter as Router, Switch, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { BsFillCartPlusFill } from 'react-icons/bs';
+
 function usePageViews() {
   let location = useLocation();
-  console.log(location);
   return location.pathname;
 }
 
-function Column4Button() {
+function Column4Button({ StorageStatus }) {
+  // const [active, setActive] = useState(false);
+  // const handleClick = () => {
+  //   setActive(!active);
+  // };
+  if (StorageStatus === true) {
+    console.log("yay")
+  }
   return (
     <>
       {usePageViews() === '/employee' && (
         <td class='w-25'>
-          <button className='btn btn-danger btn-sm'>
-            Soldout <TbInboxOff class='h2'></TbInboxOff>
+          <button className='btn btn-danger btn-sm'
+
+            // style={{ backgroundColor: active ? 'darkred' : 'green' }}
+            style={{ backgroundColor: StorageStatus ? 'darkred' : 'green' }}
+          // onClick={handleClick}
+
+          >
+            {StorageStatus ? 'Soldout' : 'Available'} <TbInboxOff class='h2'></TbInboxOff>
           </button>
         </td>
       )}
+
       {usePageViews() === '/customer' && (
         <td class='w-25'>
           <button className='btn btn-success btn-sm'>

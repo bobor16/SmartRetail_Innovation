@@ -20,14 +20,14 @@ function Navbar() {
           <div class='collapse navbar-collapse' id='navbarSupportedContent'>
             <a class='navbar-brand mt-2 mt-lg-0' href='#'>
               <img
-                src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcToPIV72mFc_9m-3hO3trrYX2GkrMI3yPam9w&usqp=CAU'
+                src='https://cdn0.iconfinder.com/data/icons/smart-technology-5/64/smart_technology_smart_retail-1024.png'
                 height='60'
                 alt=' Logo'
                 loading='lazy'
               />
             </a>
 
-            <ul class='navbar-nav me-auto mb-2 mb-lg-0'>
+            {/* <ul class='navbar-nav me-auto mb-2 mb-lg-0'>
               <li class='nav-item'>
                 <a class='nav-link' href='#'>
                   Link
@@ -38,7 +38,7 @@ function Navbar() {
                   Link
                 </a>
               </li>
-            </ul>
+            </ul> */}
           </div>
 
           <div class='d-flex align-items-center '>

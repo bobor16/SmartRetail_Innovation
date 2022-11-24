@@ -4,7 +4,6 @@ import { ref, onValue } from 'firebase/database';
 import { Table } from 'react-bootstrap';
 import './ProductsTable.css';
 import Column4Button from '../Column4Button';
-import { Routes, Route } from 'react-router-dom';
 
 const db = StartFirebase();
 
@@ -12,12 +11,33 @@ export class ProductsTable extends React.Component {
   constructor() {
     super();
     this.state = {
+      isEmpty: false,
       tableData: [],
+      storageData: []
     };
   }
 
   componentDidMount() {
     const dbRef = ref(db, 'Ultrasonic');
+    const dbStorage = ref(db, 'Storage');
+
+    onValue(dbStorage, (snapshot) => {
+      let records = [];
+      snapshot.forEach((childsnapshot) => {
+        let keyName = childsnapshot.key;
+        let data = childsnapshot.val();
+
+        if (data === 0) {
+          this.setState({ isEmpty: true })
+        } else {
+          this.setState({ isEmpty: false })
+        }
+
+        records.push({ key: keyName, data });
+      });
+      this.setState({ storageData: records });
+
+    })
 
     onValue(dbRef, (snapshot) => {
       let records = [];
@@ -25,7 +45,7 @@ export class ProductsTable extends React.Component {
         let keyName = childsnapshot.key;
         let data = childsnapshot.val();
         let amount;
-        const type = ' pk';
+
         if (data >= 50 && data <= 60) {
           amount = 5;
         } else if (data >= 40 && data < 50) {
@@ -39,7 +59,7 @@ export class ProductsTable extends React.Component {
         } else {
           amount = 0;
         }
-        records.push({ key: keyName, data: amount + type });
+        records.push({ key: keyName, data: amount });
       });
       this.setState({ tableData: records });
     });
@@ -61,17 +81,26 @@ export class ProductsTable extends React.Component {
               <th>#</th>
               <th>Product</th>
               <th>Amount</th>
-              <th></th>
+              <th>Storage</th>
+              <th>Status</th>
             </tr>
           </thead>
           <tbody>
             {this.state.tableData.map((row, index) => {
               return (
-                <tr key={index}>
+                <tr key={index} >
                   <td>{index + 1}</td>
-                  <td>{row.key}</td>
-                  <td>{row.data}</td>
-                  <Column4Button></Column4Button>
+                  <td>{"Mælkesnitter"}</td>
+                  <td>{row.data + ' pk'}</td>
+                  <td>{this.state.storageData.map((row) => {
+                    return (
+                      row.data + ' pk'
+                    )
+                  })}
+                  </td>
+                  <td>
+                    {<Column4Button StorageStatus={this.state.isEmpty} ></Column4Button>}
+                  </td>
                 </tr>
               );
             })}
