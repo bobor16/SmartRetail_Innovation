@@ -1,5 +1,6 @@
 import React from 'react';
-import { TbInboxOff } from 'react-icons/tb';
+// import { TbInboxOff } from 'react-icons/tb';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useLocation } from 'react-router-dom';
 import { BsFillCartPlusFill } from 'react-icons/bs';
 
@@ -9,10 +10,6 @@ function usePageViews() {
 }
 
 function Column4Button({ StorageStatus }) {
-  // const [active, setActive] = useState(false);
-  // const handleClick = () => {
-  //   setActive(!active);
-  // };
   if (StorageStatus === true) {
     console.log("yay")
   }
@@ -20,14 +17,9 @@ function Column4Button({ StorageStatus }) {
     <>
       {usePageViews() === '/employee' && (
         <td class='w-25'>
-          <button className='btn btn-danger btn-sm'
-
-            // style={{ backgroundColor: active ? 'darkred' : 'green' }}
-            style={{ backgroundColor: StorageStatus ? 'darkred' : 'green' }}
-          // onClick={handleClick}
-
-          >
-            {StorageStatus ? 'Soldout' : 'Available'} <TbInboxOff class='h2'></TbInboxOff>
+          <button className='btn btn-danger btn-md'
+            style={{ backgroundColor: StorageStatus ? 'darkred' : 'green' }}>
+            {StorageStatus ? 'Soldout' : 'Available'} <i class="fa-solid fa-warehouse"></i>
           </button>
         </td>
       )}
