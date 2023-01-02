@@ -44,17 +44,16 @@ export class ProductsTable extends React.Component {
       snapshot.forEach((childsnapshot) => {
         let keyName = childsnapshot.key;
         let data = childsnapshot.val();
+        console.log("data" + data)
         let amount;
 
-        if (data >= 50 && data <= 60) {
-          amount = 5;
-        } else if (data >= 40 && data < 50) {
+        if (data >= 2 && data <= 4) {
           amount = 4;
-        } else if (data >= 30 && data < 40) {
+        } else if (data >= 5 && data < 8) {
           amount = 3;
-        } else if (data >= 20 && data < 30) {
+        } else if (data >= 8 && data < 14) {
           amount = 2;
-        } else if (data >= 10 && data < 20) {
+        } else if (data >= 14 && data < 17) {
           amount = 1;
         } else {
           amount = 0;
@@ -90,11 +89,112 @@ export class ProductsTable extends React.Component {
               return (
                 <tr key={index} >
                   <td>{index + 1}</td>
-                  <td>{"Mælkesnitter"}</td>
+                  <td>{"Lurpak - Smør / (saltet) / 200 g"}</td>
                   <td>{row.data + ' pk'}</td>
                   <td>{this.state.storageData.map((row) => {
                     return (
                       row.data + ' pk'
+                    )
+                  })}
+                  </td>
+                  <td>
+                    {<Column4Button StorageStatus={this.state.isEmpty} ></Column4Button>}
+                  </td>
+                </tr>
+                
+              );
+            })}
+          </tbody>
+          <tbody>
+            {this.state.tableData.map((row, index) => {
+              return (
+                <tr key={index} >
+                  <td>{2}</td>
+                  <td>{"Natures Charm Sødet Kondenseret kokosmælk / 320 g "}</td>
+                  <td>{14 + ' pk'}</td>
+                  <td>{this.state.storageData.map((row) => {
+                    return (
+                      37 + ' pk'
+                    )
+                  })}
+                  </td>
+                  <td>
+                    {<Column4Button StorageStatus={this.state.isEmpty} ></Column4Button>}
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+          <tbody>
+            {this.state.tableData.map((row, index) => {
+              return (
+                <tr key={index} >
+                  <td>{3}</td>
+                  <td>{"Danish BBQ Bundle - Danish"}</td>
+                  <td>{0+ ' pk'}</td>
+                  <td>{this.state.storageData.map((row) => {
+                    return (
+                      0 + ' pk'
+                    )
+                  })}
+                  </td>
+                  <td>
+                    {<Column4Button StorageStatus={this.state.isEmpty == false} ></Column4Button>}
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+          <tbody>
+            {this.state.tableData.map((row, index) => {
+              return (
+                <tr key={index} >
+                  <td>{4}</td>
+                  <td>{"Wispy Zero Sauce / 430 g"}</td>
+                  <td>{0 + ' pk'}</td>
+                  <td>{this.state.storageData.map((row) => {
+                    return (
+                      0 + ' pk'
+                    )
+                  })}
+                  </td>
+                  <td>
+                    {<Column4Button StorageStatus={this.state.isEmpty == false} ></Column4Button>}
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+          <tbody>
+            {this.state.tableData.map((row, index) => {
+              return (
+                <tr key={index} >
+                  <td>{5}</td>
+                  <td>{"EASIS - Pickles / 190 g"}</td>
+                  <td>{5 + ' pk'}</td>
+                  <td>{this.state.storageData.map((row) => {
+                    return (
+                      10 + ' pk'
+                    )
+                  })}
+                  </td>
+                  <td>
+                    {<Column4Button StorageStatus={this.state.isEmpty} ></Column4Button>}
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+          <tbody>
+            {this.state.tableData.map((row, index) => {
+              return (
+                <tr key={index} >
+                  <td>{6}</td>
+                  <td>{"Kinder Pingui / 4 x 30 g "}</td>
+                  <td>{17 + ' pk'}</td>
+                  <td>{this.state.storageData.map((row) => {
+                    return (
+                      30 + ' pk'
                     )
                   })}
                   </td>

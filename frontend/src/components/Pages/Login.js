@@ -42,6 +42,10 @@ function Login() {
             <a class='underlineHover' href='#'>
               Forgot Password?
             </a>
+            <div>
+              <a class='underlineHover' href='#'>
+                Create new account  </a>
+            </div>
           </div>
         </div>
       </div>
